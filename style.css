@@ -1,0 +1,109 @@
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+@import url('https://fonts.googleapis.com/css2?family=Piazzolla&display=swap');
+/*font-family: 'Piazzolla', serif;*/
+/*RESETS*/
+:root {
+  background-color: #f1f1f1;
+  font-size: 62.5%;
+  font-family: 'Piazzolla', serif;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #282828;
+}
+/*PREDEFINED STYLE CLASSES*/
+.hidden {
+  display: none;
+}
+
+
+/*PAGE CONTENT*/
+
+#root{
+  width: 100vw;
+  text-align: center;
+}
+#app {
+  height:100%;
+  width:100%;
+}
+#navbar ul {
+  margin:1rem;
+  margin-top: 10rem;
+  list-style-type: none;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#navbar ul li {
+  margin: 0 0.5rem;
+}
+#book-stack h1 {
+  margin:1rem;
+  font-size: 3rem;;
+}
+#bookcase {
+  margin: auto;
+  max-width: 80rem;
+  background: green;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  
+}
+#loader {
+  margin: auto;
+  margin-top: 40vh;
+	width: 10rem;
+	height: 10rem;
+	border-radius: 50%;
+	border: 1rem solid white;
+	border-top-color: black;
+	border-bottom-color: black;
+	animation: spin 2s linear infinite;
+}
+.card {
+  margin:1rem;
+  background-color: white;
+  display:flex;
+  flex-direction: column;
+  border-radius: 0.3rem;
+}
+.card-bottom {
+  display:flex;
+  justify-content: space-between;
+}
+.favorite {
+  font-size: large;
+  margin:0.5rem;
+}
+.favorite:hover{
+  cursor: pointer;
+}
+.fa-star:before{color: red}
+
+.details {
+  margin: 0.1rem;
+  font-size: large;
+  border: 0.05rem solid;
+  border-radius: 0.3rem;
+  padding: 0.1rem;
+}
+.details:hover{
+  cursor: pointer;
+}
