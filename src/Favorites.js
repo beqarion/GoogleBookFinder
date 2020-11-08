@@ -103,7 +103,7 @@ class BookCard extends React.Component {
     this.setState(this.props);
     this.updateFavStatus();
   }
-  componentDidUpdate() {
+  
     
   handleFav(){
     this.setState({
@@ -111,11 +111,13 @@ class BookCard extends React.Component {
     })
     this.updateLocalStorage(this.state.isFavorite);
   }
+
   handleDet(){
     console.log(this.state.index+" details");
   }
+  
   handleLoad(event){
-    let el = event.target;
+    let el = eveent.target;
     let par = el.parentNode;
     par.classList = 'card';
     
@@ -126,7 +128,6 @@ class BookCard extends React.Component {
     if(ids.some( i => i == this.props.book.id)){
       this.setState({isFavorite:true});
     }
-    
   }
   updateLocalStorage(isFav){
     let f = !isFav;

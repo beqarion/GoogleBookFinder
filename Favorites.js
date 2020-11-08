@@ -165,11 +165,6 @@ var BookCard = function (_React$Component3) {
       this.updateFavStatus();
     }
   }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      // this.updateLocalStorage(this.state.isFavorite);
-    }
-  }, {
     key: 'handleFav',
     value: function handleFav() {
       this.setState({
@@ -185,7 +180,7 @@ var BookCard = function (_React$Component3) {
   }, {
     key: 'handleLoad',
     value: function handleLoad(event) {
-      var el = event.target;
+      var el = eveent.target;
       var par = el.parentNode;
       par.classList = 'card';
     }
