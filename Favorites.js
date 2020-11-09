@@ -127,13 +127,17 @@ var BookStack = function (_React$Component2) {
           books = _state.books,
           thumbUrls = _state.thumbUrls;
 
-      return React.createElement(
+      return books.length == 0 ? React.createElement(
+        'div',
+        { id: 'div-placeholder' },
+        'Favorites are emtpy'
+      ) : React.createElement(
         'div',
         { id: 'book-stack' },
         React.createElement(
           'h1',
           null,
-          'Favorite Books'
+          'Favorites Books'
         ),
         React.createElement(
           'div',

@@ -1,9 +1,9 @@
 @keyframes spin {
 	0% {
-		transform: rotate(0deg);
+		transform: translate(-50%) rotate(0deg);
 	}
 	100% {
-		transform: rotate(360deg);
+		transform: translate(-50%) rotate(360deg);
 	}
 }
 @import url('https://fonts.googleapis.com/css2?family=Piazzolla&display=swap');
@@ -23,6 +23,9 @@
   padding: 0;
   color: #282828;
 }
+a {
+  text-decoration: none;
+}
 /*PREDEFINED STYLE CLASSES*/
 .hidden {
   display: none;
@@ -35,9 +38,8 @@
   width: 100vw;
   text-align: center;
 }
-#app {
-  height:100%;
-  width:100%;
+#navbar {
+  margin: 3rem 0 2rem;
 }
 #navbar ul {
   margin:1rem;
@@ -58,7 +60,8 @@
 #bookcase {
   margin: auto;
   max-width: 80rem;
-  background: green;
+  border: 0.1rem solid;
+  border-radius:0.3rem;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -80,6 +83,13 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+}
+#div-placeholder {
+  font-size: 1.5rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
 }
 .card {

@@ -42,7 +42,7 @@ class App extends React.Component {
           
           <form id="search-bar">
             <input id="text-input" onBlur={this.handleInput} />
-            <button id="enter" onClick={this.handleEnter}>Go</button>
+            <button id="enter" onClick={this.handleEnter}>Enter</button>
           </form>
             
         </nav>
@@ -92,22 +92,20 @@ class BookStack extends React.Component {
       this.setState({isLoaded: true})
     });
   }
-  render() {                                                                                                    //BOOKSTACK RENDER IS HERE!
+  render() {    
     let {books, thumbUrls,isLoaded} = this.state;
     return (isLoaded?(
-    <div id="book-stack">
-      <h1>Books from Google</h1>
-      <div id="bookcase">
-        {thumbUrls.map((u,i)=><BookCard 
-          key={i}
-          index={i+1}
-          book={books[i]}
-          thumbUrl={thumbUrls[i]}
-        />)}
+      this.state.books.length == 0? <div id="div-placeholder">enter your keywords in the field an press/click enter</div>:
+      <div id="book-stack">
+        <div id="bookcase">
+          {thumbUrls.map((u,i)=><BookCard 
+            key={i}
+            index={i+1}
+            book={books[i]}
+            thumbUrl={thumbUrls[i]}
+          />)}
+        </div>
       </div>
-      
-    </div>
-      
     ):
       <div id="loader"></div>
     )
@@ -148,7 +146,6 @@ class BookCard extends React.Component {
     let el = event.target;
     let par = el.parentNode;
     par.classList = 'card';
-    
   }
   updateFavStatus(){
     const ids = localStorage.getItem('books')? JSON.parse(localStorage.getItem('books')).map( b => b[0]): [];

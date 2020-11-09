@@ -24,6 +24,7 @@ var App = function (_React$Component) {
     _this.handleLoad = _this.handleLoad.bind(_this);
     _this.updateLocalStorage = _this.updateLocalStorage.bind(_this);
     _this.updateFavStatus = _this.updateFavStatus.bind(_this);
+    _this.processElements = _this.processElements.bind(_this);
 
     return _this;
   }
@@ -108,10 +109,38 @@ var App = function (_React$Component) {
       }
     }
   }, {
+    key: 'processElements',
+    value: function processElements(data) {
+      var book = data ? Object.assign({}, data) : {};
+      var volumeInfo = book.volumeInfo ? book.volumeInfo : '';
+      var title = volumeInfo.title ? volumeInfo.title : '';
+      var authors = volumeInfo.authors ? volumeInfo.authors : '';
+      var description = volumeInfo.description ? volumeInfo.description : '';
+      var publishedDate = volumeInfo.publishedDate ? volumeInfo.publishedDate : '';
+      var pageCount = volumeInfo.pageCount ? volumeInfo.pageCount : '';
+      var previewLink = volumeInfo.previewLink ? volumeInfo.previewLink : '';
+
+      return {
+        title: title,
+        authors: authors,
+        description: description,
+        publishedDate: publishedDate,
+        pageCount: pageCount,
+        previewLink: previewLink
+      };
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var book = this.state.book;
+      var _processElements = this.processElements(this.state.book),
+          title = _processElements.title,
+          authors = _processElements.authors,
+          description = _processElements.description,
+          publishedDate = _processElements.publishedDate,
+          pageCount = _processElements.pageCount,
+          previewLink = _processElements.previewLink;
 
+      console.log(pageCount, title);
 
       return React.createElement(
         'div',
@@ -156,43 +185,62 @@ var App = function (_React$Component) {
                 'div',
                 { className: 'favorite', onClick: this.handleFav },
                 React.createElement('i', { className: this.state.isFavorite ? "fa fa-star" : "fa fa-star-o" })
+              ),
+              React.createElement(
+                'a',
+                { href: previewLink, id: 'preview-link', target: '_blank' },
+                React.createElement('i', { className: 'fa fa-chevron-circle-right' }),
+                ' Preview link'
               )
             )
           ),
           React.createElement(
-            'div',
+            'article',
             { id: 'details' },
             React.createElement(
-              'h1',
+              'section',
               null,
-              book ? book.volumeInfo.title : ''
+              React.createElement(
+                'h1',
+                { id: 'title' },
+                title
+              ),
+              React.createElement(
+                'p',
+                { id: 'authors' },
+                'By ',
+                React.createElement(
+                  'b',
+                  null,
+                  authors
+                )
+              ),
+              description ? React.createElement(
+                'p',
+                { id: 'description' },
+                description
+              ) : ''
             ),
             React.createElement(
-              'p',
+              'section',
               null,
-              'By ',
-              book ? book.volumeInfo.authors : ''
-            ),
-            React.createElement(
-              'p',
-              null,
-              book ? book.volumeInfo.description : ''
-            ),
-            React.createElement('hr', null),
-            React.createElement(
-              'p',
-              null,
-              'published DATE'
-            ),
-            React.createElement(
-              'p',
-              null,
-              'pages'
-            ),
-            React.createElement(
-              'a',
-              null,
-              'Preview link'
+              React.createElement(
+                'p',
+                { id: 'date' },
+                'Published in:  ',
+                React.createElement(
+                  'date',
+                  null,
+                  publishedDate
+                ),
+                '.'
+              ),
+              pageCount ? React.createElement(
+                'p',
+                { id: 'page-count' },
+                'pages: ',
+                pageCount
+              ) : ''
             )
           )
         )

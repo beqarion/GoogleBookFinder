@@ -11,6 +11,7 @@ class App extends React.Component {
       this.handleLoad = this.handleLoad.bind(this);
       this.updateLocalStorage = this.updateLocalStorage.bind(this);
       this.updateFavStatus = this.updateFavStatus.bind(this);
+      this.processElements = this.processElements.bind(this);
   
     }
     componentDidMount() {
@@ -75,9 +76,35 @@ class App extends React.Component {
         }
       }
     }
+    processElements(data){
+      let book = data?{...data}:{};
+      let volumeInfo = book.volumeInfo ? book.volumeInfo:'';
+      let title = volumeInfo.title ? volumeInfo.title : '';
+      let authors = volumeInfo.authors ? volumeInfo.authors : '';
+      let description = volumeInfo.description?volumeInfo.description:'';
+      let publishedDate = volumeInfo.publishedDate? volumeInfo.publishedDate : '';
+      let pageCount = volumeInfo.pageCount? volumeInfo.pageCount : '';
+      let previewLink = volumeInfo.previewLink? volumeInfo.previewLink : '';
+
+      return {
+        title,
+        authors,
+        description,
+        publishedDate,
+        pageCount,
+        previewLink
+      }
+    }
     render() {
-        
-        let {book} = this.state;
+        let {
+          title,
+          authors,
+          description,
+          publishedDate,
+          pageCount,
+          previewLink
+        } = this.processElements(this.state.book);
+        console.log(pageCount,title);
         
         return (
             <div id="app">
@@ -93,19 +120,23 @@ class App extends React.Component {
                         <img src={this.state.thumbUrl} onLoad={this.handleLoad} />
                         <div className="card-bottom">
                             <div className="favorite" onClick={this.handleFav}><i className={this.state.isFavorite?"fa fa-star":"fa fa-star-o"}></i></div>
+                            <a href={previewLink}id="preview-link"target="_blank"><i className="fa fa-chevron-circle-right" ></i> Preview link</a>
                         </div>
                     </div>
-                    <div id="details">
-                        <h1>{book?book.volumeInfo.title:''}</h1>
-                        <p>By {book?book.volumeInfo.authors:''}</p>
-                        <p>{book?book.volumeInfo.description:''}</p>
-                        <hr/>
-                        <p>published DATE</p>
-                        
 
-                        <p>pages</p>
-                        <a>Preview link</a>
-                    </div>
+                    <article id="details">
+                      <section>
+                        <h1 id="title">{title}</h1>
+                        <p id="authors">By <b>{authors}</b></p>
+                        {description?<p id="description">{description}</p>:''}
+                      </section>
+                      <section>
+                        <p id="date">Published in:  <date>{publishedDate}</date>.</p>
+                        {
+                          pageCount? <p id="page-count">pages: {pageCount}</p>:''
+                        }
+                      </section>
+                    </article>
                 </div>
                 
             </div>

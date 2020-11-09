@@ -89,7 +89,7 @@ var App = function (_React$Component) {
               React.createElement(
                 'button',
                 { id: 'enter', onClick: this.handleEnter },
-                'Go'
+                'Enter'
               )
             )
           ),
@@ -153,20 +153,18 @@ var BookStack = function (_React$Component2) {
   }, {
     key: 'render',
     value: function render() {
-      //BOOKSTACK RENDER IS HERE!
       var _state = this.state,
           books = _state.books,
           thumbUrls = _state.thumbUrls,
           isLoaded = _state.isLoaded;
 
-      return isLoaded ? React.createElement(
+      return isLoaded ? this.state.books.length == 0 ? React.createElement(
+        'div',
+        { id: 'div-placeholder' },
+        'enter your keywords in the field an press/click enter'
+      ) : React.createElement(
         'div',
         { id: 'book-stack' },
-        React.createElement(
-          'h1',
-          null,
-          'Books from Google'
-        ),
         React.createElement(
           'div',
           { id: 'bookcase' },

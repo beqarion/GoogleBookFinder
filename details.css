@@ -15,6 +15,9 @@
   padding: 0;
   color: #282828;
 }
+a {
+  text-decoration: none;
+}
 /*PREDEFINED STYLE CLASSES*/
 .hidden {
   display: none;
@@ -39,6 +42,7 @@
     margin: auto;
     max-width:80rem;
     border: 0.1rem solid;
+    border-radius: 0.3rem;
     display:flex;
     align-items: flex-start;
     justify-content:center;
@@ -62,8 +66,40 @@
   cursor: pointer;
 }
 .fa-star:before{color: red} 
+#preview-link {
+  margin: 0.3rem;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  border: 0.05rem solid;
+  border-radius: 0.3rem;
+  padding: 0.3rem;
+}
+#preview-link:hover{
+  cursor: pointer;
+}
+
+
 #details {
-    flex-grow: 2;
-    padding: 1rem;
-    border: 0.1rem solid;
+  flex-grow: 2;
+  padding: 1rem;
+  
+}
+
+#details h1{
+  font-size:3rem
+}
+#details #authors{
+  font-size:2rem;
+  margin-bottom: 1.5rem;
+}
+#details #description {
+  border-top: 0.1rem solid;
+  border-bottom: 0.1rem solid;
+  padding: 1rem 0;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+}
+#details section:last-child {
+  padding: 1rem 0;
+  font-size:1.2rem;
 }

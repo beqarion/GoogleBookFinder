@@ -73,8 +73,9 @@ class BookStack extends React.Component {
   render() {                                                                                                    //BOOKSTACK RENDER IS HERE!
     let {books, thumbUrls} = this.state;
     return (
+      books.length == 0 ? <div id="div-placeholder">Favorites are emtpy</div> :
       <div id="book-stack">
-        <h1>Favorite Books</h1>
+        <h1>Favorites Books</h1>
         <div id="bookcase">
           {thumbUrls.map((u,i)=><BookCard 
             key={i}
@@ -82,7 +83,7 @@ class BookStack extends React.Component {
             book={books[i]}
             thumbUrl={thumbUrls[i]}
           />)}
-        </div>
+        </div> 
         
       </div>
       
