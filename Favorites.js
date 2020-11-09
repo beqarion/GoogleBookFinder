@@ -137,7 +137,7 @@ var BookStack = function (_React$Component2) {
         React.createElement(
           'h1',
           null,
-          'Favorites Books'
+          'Favorites'
         ),
         React.createElement(
           'div',

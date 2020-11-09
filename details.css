@@ -25,10 +25,16 @@ a {
 
 
 /*PAGE CONTENT*/
-
+html {
+  background: url(src/imgs/books.png) left top repeat-x, url(src/imgs/bg.jpg) left no-repeat;
+  background-size: 27rem, cover;
+}
+body {
+  background: beige!important;
+}
 #navbar ul {
     margin:1rem;
-    margin-top: 10rem;
+    margin-top: 15rem;
     list-style-type: none;
     font-size: 2rem;
     display: flex;
@@ -36,7 +42,15 @@ a {
     align-items: center;
 }
 #navbar ul li {
-    margin: 0 0.5rem;
+  margin: 3rem;
+}
+#navbar ul li a{
+  color: beige;
+  font-size: 2.5rem;
+  text-shadow: -1px -1px 1px #575102, 1px 1px 1px #575102, 
+  1px -1px 1px #575102, -1px 1px 1px  #575102, 
+  -1px -1px 2px #575102, 1px 1px 2px #575102, 
+  1px -1px 2px #575102, -1px 1px 2px #575102;
 }
 #content {
     margin: auto;
@@ -53,6 +67,8 @@ a {
   display:flex;
   flex-direction: column;
   border-radius: 0.3rem;
+  flex-shrink: 0;
+  box-shadow: 3px 3px 3px 1px rgba(0,0,0,0.75);
 }
 .card-bottom {
   display:flex;
@@ -73,6 +89,8 @@ a {
   border: 0.05rem solid;
   border-radius: 0.3rem;
   padding: 0.3rem;
+  background: rgb(97,90,9);
+background: linear-gradient(0deg, rgba(97,90,9,1) 0%, rgba(255,239,0,1) 44%, rgba(252,238,32,1) 78%, rgba(226,214,129,1) 100%);
 }
 #preview-link:hover{
   cursor: pointer;

@@ -75,7 +75,7 @@ class BookStack extends React.Component {
     return (
       books.length == 0 ? <div id="div-placeholder">Favorites are emtpy</div> :
       <div id="book-stack">
-        <h1>Favorites Books</h1>
+        <h1>Favorites</h1>
         <div id="bookcase">
           {thumbUrls.map((u,i)=><BookCard 
             key={i}
