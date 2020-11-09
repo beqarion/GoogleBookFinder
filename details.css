@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Piazzolla&display=swap');
+/*font-family: 'Piazzolla', serif;*/
+/*RESETS*/
+:root {
+  background-color: #f1f1f1;
+  font-size: 62.5%;
+  font-family: 'Piazzolla', serif;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #282828;
+}
+/*PREDEFINED STYLE CLASSES*/
+.hidden {
+  display: none;
+}
+
+
+/*PAGE CONTENT*/
+
+#navbar ul {
+    margin:1rem;
+    margin-top: 10rem;
+    list-style-type: none;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#navbar ul li {
+    margin: 0 0.5rem;
+}
+#content {
+    margin: auto;
+    max-width:80rem;
+    border: 0.1rem solid;
+    display:flex;
+    align-items: flex-start;
+    justify-content:center;
+}   
+.card {
+  margin:1rem;
+  background-color: white;
+  display:flex;
+  flex-direction: column;
+  border-radius: 0.3rem;
+}
+.card-bottom {
+  display:flex;
+  justify-content: space-between;
+}
+.favorite {
+  font-size: large;
+  margin:0.5rem;
+}
+.favorite:hover{
+  cursor: pointer;
+}
+.fa-star:before{color: red} 
+#details {
+    flex-grow: 2;
+    padding: 1rem;
+    border: 0.1rem solid;
+}

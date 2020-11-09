@@ -29,7 +29,12 @@ class App extends React.Component {
   render() {
     return (                                                                                                 //APP RENDER IS HERE!
       <div id="app">
-        <a href="index.html"><h1>Home</h1> </a>
+        <nav id="navbar">
+          <ul>
+            <li id="home-page"><a href="index.html">Home</a></li>
+            <li id="favorites"><a href="favorites.html">Favorites</a></li>
+          </ul>
+        </nav>
 
         <BookStack key={this.state.num} number={this.state.num} url={this.state.url}/>
 
@@ -90,6 +95,7 @@ class BookCard extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      book: null,
       thumbUrl: [],
       isFavorite: true
     }
@@ -114,10 +120,13 @@ class BookCard extends React.Component {
 
   handleDet(){
     console.log(this.state.index+" details");
+    console.log(this.state.book);
+    localStorage.setItem('book',JSON.stringify(this.state.book));
+    
   }
   
   handleLoad(event){
-    let el = eveent.target;
+    let el = event.target;
     let par = el.parentNode;
     par.classList = 'card';
     
@@ -152,7 +161,7 @@ class BookCard extends React.Component {
         <img src={this.props.thumbUrl} onLoad={this.handleLoad} />
         <div className="card-bottom">
           <div className="favorite" onClick={this.handleFav}><i className={this.state.isFavorite?"fa fa-star":"fa fa-star-o"}></i></div>
-          <div className="details" onClick={this.handleDet}><i className="fa fa-chevron-circle-right"></i> Details</div>
+          <a href="details.html"><div className="details" onClick={this.handleDet}><i className="fa fa-chevron-circle-right"></i> Details</div></a>
         </div>
       </div>
     )

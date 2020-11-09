@@ -66,20 +66,10 @@ var App = function (_React$Component) {
               React.createElement(
                 'li',
                 { id: 'home-page' },
-                'Home'
-              ),
-              React.createElement(
-                'li',
-                null,
                 React.createElement(
-                  'form',
-                  { id: 'search-bar' },
-                  React.createElement('input', { id: 'text-input', onBlur: this.handleInput }),
-                  React.createElement(
-                    'button',
-                    { id: 'enter', onClick: this.handleEnter },
-                    'Go'
-                  )
+                  'a',
+                  { href: 'index.html' },
+                  'Home'
                 )
               ),
               React.createElement(
@@ -90,6 +80,16 @@ var App = function (_React$Component) {
                   { href: 'favorites.html' },
                   'Favorites'
                 )
+              )
+            ),
+            React.createElement(
+              'form',
+              { id: 'search-bar' },
+              React.createElement('input', { id: 'text-input', onBlur: this.handleInput }),
+              React.createElement(
+                'button',
+                { id: 'enter', onClick: this.handleEnter },
+                'Go'
               )
             )
           ),
@@ -195,6 +195,7 @@ var BookCard = function (_React$Component3) {
     var _this4 = _possibleConstructorReturn(this, (BookCard.__proto__ || Object.getPrototypeOf(BookCard)).call(this, props));
 
     _this4.state = {
+      book: [],
       thumbUrl: [],
       isFavorite: false
     };
@@ -213,9 +214,6 @@ var BookCard = function (_React$Component3) {
       this.updateFavStatus();
     }
   }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {}
-  }, {
     key: 'handleFav',
     value: function handleFav() {
       this.setState({
@@ -227,6 +225,8 @@ var BookCard = function (_React$Component3) {
     key: 'handleDet',
     value: function handleDet() {
       console.log(this.state.index + " details");
+      console.log(this.state.book);
+      localStorage.setItem('book', JSON.stringify([this.state.book.id, this.state.book]));
     }
   }, {
     key: 'handleLoad',
@@ -280,7 +280,6 @@ var BookCard = function (_React$Component3) {
   }, {
     key: 'render',
     value: function render() {
-      //BOOKCARD RENDER IS HERE!
       return React.createElement(
         'div',
         { className: 'hidden' },
@@ -294,10 +293,14 @@ var BookCard = function (_React$Component3) {
             React.createElement('i', { className: this.state.isFavorite ? "fa fa-star" : "fa fa-star-o" })
           ),
           React.createElement(
-            'div',
-            { className: 'details', onClick: this.handleDet },
-            React.createElement('i', { className: 'fa fa-chevron-circle-right' }),
-            ' Details'
+            'a',
+            { href: 'details.html' },
+            React.createElement(
+              'div',
+              { className: 'details', onClick: this.handleDet },
+              React.createElement('i', { className: 'fa fa-chevron-circle-right' }),
+              ' Details'
+            )
           )
         )
       );

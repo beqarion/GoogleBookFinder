@@ -36,15 +36,15 @@ class App extends React.Component {
       <div id="app">
         <nav id="navbar">
           <ul>
-            <li id="home-page">Home</li>
-            <li>
-              <form id="search-bar">
-                <input id="text-input" onBlur={this.handleInput} />
-                <button id="enter" onClick={this.handleEnter}>Go</button>
-              </form>
-            </li>
+            <li id="home-page"><a href="index.html">Home</a></li>
             <li id="favorites"><a href="favorites.html">Favorites</a></li>
           </ul>
+          
+          <form id="search-bar">
+            <input id="text-input" onBlur={this.handleInput} />
+            <button id="enter" onClick={this.handleEnter}>Go</button>
+          </form>
+            
         </nav>
 
         <BookStack key={this.state.num} number={this.state.num} url={this.state.url}/>
@@ -95,18 +95,18 @@ class BookStack extends React.Component {
   render() {                                                                                                    //BOOKSTACK RENDER IS HERE!
     let {books, thumbUrls,isLoaded} = this.state;
     return (isLoaded?(
-      <div id="book-stack">
-        <h1>Books from Google</h1>
-        <div id="bookcase">
-          {thumbUrls.map((u,i)=><BookCard 
-            key={i}
-            index={i+1}
-            book={books[i]}
-            thumbUrl={thumbUrls[i]}
-          />)}
-        </div>
-        
+    <div id="book-stack">
+      <h1>Books from Google</h1>
+      <div id="bookcase">
+        {thumbUrls.map((u,i)=><BookCard 
+          key={i}
+          index={i+1}
+          book={books[i]}
+          thumbUrl={thumbUrls[i]}
+        />)}
       </div>
+      
+    </div>
       
     ):
       <div id="loader"></div>
@@ -119,6 +119,7 @@ class BookCard extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      book: [],
       thumbUrl: [],
       isFavorite: false
     }
@@ -132,9 +133,6 @@ class BookCard extends React.Component {
     this.setState(this.props);
     this.updateFavStatus();
   }
-  componentDidUpdate() {
-    
-  }
   handleFav(){
     this.setState({
       isFavorite: !this.state.isFavorite
@@ -143,12 +141,13 @@ class BookCard extends React.Component {
   }
   handleDet(){
     console.log(this.state.index+" details");
+    console.log(this.state.book);
+    localStorage.setItem('book',JSON.stringify([this.state.book.id, this.state.book]));
   }
   handleLoad(event){
     let el = event.target;
     let par = el.parentNode;
     par.classList = 'card';
-    
     
   }
   updateFavStatus(){
@@ -176,13 +175,13 @@ class BookCard extends React.Component {
       }
     }
   }
-  render() {                                                                                  //BOOKCARD RENDER IS HERE!
+  render() {    
     return (
       <div className="hidden">
         <img src={this.props.thumbUrl} onLoad={this.handleLoad} />
         <div className="card-bottom">
           <div className="favorite" onClick={this.handleFav}><i className={this.state.isFavorite?"fa fa-star":"fa fa-star-o"}></i></div>
-          <div className="details" onClick={this.handleDet}><i className="fa fa-chevron-circle-right"></i> Details</div>
+          <a href="details.html"><div className="details" onClick={this.handleDet}><i className="fa fa-chevron-circle-right"></i> Details</div></a> 
         </div>
       </div>
     )

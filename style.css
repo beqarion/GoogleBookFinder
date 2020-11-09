@@ -68,14 +68,19 @@
 }
 #loader {
   margin: auto;
-  margin-top: 40vh;
+  /* margin-top: 30vh; */
 	width: 10rem;
 	height: 10rem;
 	border-radius: 50%;
 	border: 1rem solid white;
 	border-top-color: black;
 	border-bottom-color: black;
-	animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .card {
   margin:1rem;

@@ -54,14 +54,30 @@ var App = function (_React$Component) {
           'div',
           { id: 'app' },
           React.createElement(
-            'a',
-            { href: 'index.html' },
+            'nav',
+            { id: 'navbar' },
             React.createElement(
-              'h1',
+              'ul',
               null,
-              'Home'
-            ),
-            ' '
+              React.createElement(
+                'li',
+                { id: 'home-page' },
+                React.createElement(
+                  'a',
+                  { href: 'index.html' },
+                  'Home'
+                )
+              ),
+              React.createElement(
+                'li',
+                { id: 'favorites' },
+                React.createElement(
+                  'a',
+                  { href: 'favorites.html' },
+                  'Favorites'
+                )
+              )
+            )
           ),
           React.createElement(BookStack, { key: this.state.num, number: this.state.num, url: this.state.url })
         )
@@ -147,6 +163,7 @@ var BookCard = function (_React$Component3) {
     var _this3 = _possibleConstructorReturn(this, (BookCard.__proto__ || Object.getPrototypeOf(BookCard)).call(this, props));
 
     _this3.state = {
+      book: null,
       thumbUrl: [],
       isFavorite: true
     };
@@ -176,11 +193,13 @@ var BookCard = function (_React$Component3) {
     key: 'handleDet',
     value: function handleDet() {
       console.log(this.state.index + " details");
+      console.log(this.state.book);
+      localStorage.setItem('book', JSON.stringify(this.state.book));
     }
   }, {
     key: 'handleLoad',
     value: function handleLoad(event) {
-      var el = eveent.target;
+      var el = event.target;
       var par = el.parentNode;
       par.classList = 'card';
     }
@@ -240,10 +259,14 @@ var BookCard = function (_React$Component3) {
             React.createElement('i', { className: this.state.isFavorite ? "fa fa-star" : "fa fa-star-o" })
           ),
           React.createElement(
-            'div',
-            { className: 'details', onClick: this.handleDet },
-            React.createElement('i', { className: 'fa fa-chevron-circle-right' }),
-            ' Details'
+            'a',
+            { href: 'details.html' },
+            React.createElement(
+              'div',
+              { className: 'details', onClick: this.handleDet },
+              React.createElement('i', { className: 'fa fa-chevron-circle-right' }),
+              ' Details'
+            )
           )
         )
       );
