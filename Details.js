@@ -16,7 +16,7 @@ var App = function (_React$Component) {
 
     _this.state = {
       book: null,
-      thumbUrl: [],
+      thumbUrl: '',
       isFavorite: null
     };
 
@@ -33,7 +33,8 @@ var App = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var book = JSON.parse(localStorage.getItem('book'))[1];
-      var thumbUrl = book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail.replace(/http:\/\//gi, 'https://') : 'src/imgs/blank-thumbnail1.jpg';
+      var thumbUrl = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail.replace(/http:\/\//gi, 'https://') : 'src/imgs/blank-thumbnail1.jpg';
+      console.log(thumbUrl);
 
       var ids = localStorage.getItem('books') ? JSON.parse(localStorage.getItem('books')).map(function (b) {
         return b[0];
@@ -224,17 +225,13 @@ var App = function (_React$Component) {
             React.createElement(
               'section',
               null,
-              React.createElement(
+              publishedDate ? React.createElement(
                 'p',
                 { id: 'date' },
                 'Published in:  ',
-                React.createElement(
-                  'date',
-                  null,
-                  publishedDate
-                ),
+                publishedDate,
                 '.'
-              ),
+              ) : '',
               pageCount ? React.createElement(
                 'p',
                 { id: 'page-count' },

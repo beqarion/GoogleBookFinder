@@ -3,7 +3,7 @@ class App extends React.Component {
       super(props);
       this.state = {
         book: null,
-        thumbUrl: [],
+        thumbUrl: '',
         isFavorite: null
       }
     
@@ -16,9 +16,8 @@ class App extends React.Component {
     }
     componentDidMount() {
         let book = JSON.parse(localStorage.getItem('book'))[1];
-        let thumbUrl = book.volumeInfo.imageLinks.thumbnail?
-            book.volumeInfo.imageLinks.thumbnail.replace(/http:\/\//gi, 'https://'):
-            'src/imgs/blank-thumbnail1.jpg';
+        let thumbUrl =  book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail.replace(/http:\/\//gi, 'https://'):'src/imgs/blank-thumbnail1.jpg';
+        console.log(thumbUrl);
         
 
         const ids = localStorage.getItem('books')? JSON.parse(localStorage.getItem('books')).map( b => b[0]): [];
@@ -131,10 +130,8 @@ class App extends React.Component {
                         {description?<p id="description">{description}</p>:''}
                       </section>
                       <section>
-                        <p id="date">Published in:  <date>{publishedDate}</date>.</p>
-                        {
-                          pageCount? <p id="page-count">pages: {pageCount}</p>:''
-                        }
+                        {publishedDate?<p id="date">Published in:  {publishedDate}.</p>:''}
+                        {pageCount? <p id="page-count">pages: {pageCount}</p>:''}
                       </section>
                     </article>
                 </div>
