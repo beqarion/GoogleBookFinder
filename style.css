@@ -39,6 +39,10 @@ a {
   text-align: center;
   
 }
+#app {
+  height: 80%;
+  position: relative;
+}
 html {
   background: url(src/imgs/books.png) left top repeat-x, url(src/imgs/bg.jpg) left no-repeat;
   background-size: 27rem, cover;
