@@ -10,7 +10,7 @@ class App extends React.Component {
     this.handleInput = this.handleInput.bind(this);
   }
   
-  handleEnter(event) {
+  handleEnter(event) { 
     event.preventDefault();
     this.setState( prevState => ({
         num: prevState.num + 1
@@ -22,7 +22,7 @@ class App extends React.Component {
     event.target.previousSibling.focus();
   }
   handleInput(event) {
-    if(event.target.value){
+    if(event.target.value.length > 0){
       this.setState({
         url:"https://www.googleapis.com/books/v1/volumes?q=" + event.target.value.trim().replace(/\s+/g, '+')
       })

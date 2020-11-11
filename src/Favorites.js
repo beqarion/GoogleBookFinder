@@ -6,26 +6,8 @@ class App extends React.Component {
       input: '',
       url: '',
     }
-    this.handleEnter = this.handleEnter.bind(this);
-    this.handleInput = this.handleInput.bind(this);
   }
   
-  handleEnter(event) {
-    event.preventDefault();
-    this.setState( prevState => ({
-      num: prevState.num + 1,
-    }));
-    event.target.previousSibling.blur();
-    event.target.previousSibling.value = '';
-    event.target.previousSibling.focus();
-  }
-  handleInput(event) {
-    if(event.target.value){
-      this.setState({
-        url:"https://www.googleapis.com/books/v1/volumes?q=" + event.target.value.trim().replace(/\s+/g, '+')
-      })
-    }
-  }
   render() {
     return (                                                                                                 //APP RENDER IS HERE!
       <div id="app">
@@ -112,16 +94,20 @@ class BookCard extends React.Component {
   }
   
     
-  handleFav(){
+  handleFav(event){
     this.setState({
       isFavorite: !this.state.isFavorite
-    })
+    });
+    console.log(event.target.parentNode.parentNode.parentNode);
+    console.log(this.state.isFavorite)
+    if(this.state.isFavorite){
+      console.log("based from prev. con.log, we removing this el from dom");
+      event.target.parentNode.parentNode.parentNode.remove();
+    }
     this.updateLocalStorage(this.state.isFavorite);
   }
 
   handleDet(){
-    console.log(this.state.index+" details");
-    console.log(this.state.book);
     localStorage.setItem('book',JSON.stringify(this.state.book));
     
   }
@@ -145,7 +131,6 @@ class BookCard extends React.Component {
     let ids = books.map( b => b[0]);
     let book = this.state.book[1];
     let id = book.id;
-    console.log(id);
     if (f && !ids.some(i => i == id)){
       books.push([id, book]);
       localStorage.setItem('books', JSON.stringify(books));

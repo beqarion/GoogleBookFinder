@@ -19,34 +19,10 @@ var App = function (_React$Component) {
       input: '',
       url: ''
     };
-    _this.handleEnter = _this.handleEnter.bind(_this);
-    _this.handleInput = _this.handleInput.bind(_this);
     return _this;
   }
 
   _createClass(App, [{
-    key: 'handleEnter',
-    value: function handleEnter(event) {
-      event.preventDefault();
-      this.setState(function (prevState) {
-        return {
-          num: prevState.num + 1
-        };
-      });
-      event.target.previousSibling.blur();
-      event.target.previousSibling.value = '';
-      event.target.previousSibling.focus();
-    }
-  }, {
-    key: 'handleInput',
-    value: function handleInput(event) {
-      if (event.target.value) {
-        this.setState({
-          url: "https://www.googleapis.com/books/v1/volumes?q=" + event.target.value.trim().replace(/\s+/g, '+')
-        });
-      }
-    }
-  }, {
     key: 'render',
     value: function render() {
       return (//APP RENDER IS HERE!
@@ -187,17 +163,21 @@ var BookCard = function (_React$Component3) {
     }
   }, {
     key: 'handleFav',
-    value: function handleFav() {
+    value: function handleFav(event) {
       this.setState({
         isFavorite: !this.state.isFavorite
       });
+      console.log(event.target.parentNode.parentNode.parentNode);
+      console.log(this.state.isFavorite);
+      if (this.state.isFavorite) {
+        console.log("based from prev. con.log, we removing this el from dom");
+        event.target.parentNode.parentNode.parentNode.remove();
+      }
       this.updateLocalStorage(this.state.isFavorite);
     }
   }, {
     key: 'handleDet',
     value: function handleDet() {
-      console.log(this.state.index + " details");
-      console.log(this.state.book);
       localStorage.setItem('book', JSON.stringify(this.state.book));
     }
   }, {
@@ -231,7 +211,6 @@ var BookCard = function (_React$Component3) {
       });
       var book = this.state.book[1];
       var id = book.id;
-      console.log(id);
       if (f && !ids.some(function (i) {
         return i == id;
       })) {
