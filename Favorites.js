@@ -169,10 +169,6 @@ var BookCard = function (_React$Component3) {
       });
       console.log(event.target.parentNode.parentNode.parentNode);
       console.log(this.state.isFavorite);
-      if (this.state.isFavorite) {
-        console.log("based from prev. con.log, we removing this el from dom");
-        event.target.parentNode.parentNode.parentNode.remove();
-      }
       this.updateLocalStorage(this.state.isFavorite);
     }
   }, {
